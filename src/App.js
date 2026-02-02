@@ -52,7 +52,7 @@ function App() {
 
   const complelteTask = async(id, isComplete) => {
     try {
-      const response = await api.put(`/tasks/${id}`, {isComplete: !isComplete});
+      const response = await api.put(`/tasks/${id}`, {isComplete: !isComplete, completeDt: !isComplete ? new Date() : null});
   
       if(response.status === 200){
         console.log('수정 성공');
@@ -72,7 +72,7 @@ function App() {
   return (
     <Container>
       <Row className="add-item-row">
-        <Col xs={12} sm={10}>
+        <Col xs={8} sm={10}>
           <input
             type="text"
             placeholder="할일을 입력하세요"
@@ -81,7 +81,7 @@ function App() {
             onChange={(event) => setTodoValue(event.target.value)}
           />
         </Col>
-        <Col xs={12} sm={2}>
+        <Col xs={4} sm={2}>
           <button className="button-add" onClick={addTask}>추가</button>
         </Col>
       </Row>
